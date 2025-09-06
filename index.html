@@ -130,8 +130,8 @@
         </form>
     </div>
 
-    <script type="module" src="scripts/validation.js"></script>
-    <script type="module" src="scripts/storage.js"></script>
+    <script type="module" src="validation.js"></script>
+    <script type="module" src="storage.js"></script>
     <script>
     document.getElementById('toggle-password').onclick = function() {
         var pwd = document.getElementById('password');
@@ -143,8 +143,8 @@
     };
     </script>
     <script type="module">
-        import { validateRegistrationForm } from './scripts/validation.js';
-        import { saveUserData } from './scripts/storage.js';
+        import { validateRegistrationForm } from 'validation.js';
+        import { saveUserData } from 'storage.js';
         
         document.getElementById('registration-form').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -172,4 +172,5 @@
         });
     </script>
 </body>
+
 </html>
