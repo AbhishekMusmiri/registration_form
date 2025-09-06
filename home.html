@@ -24,10 +24,9 @@
     var user = sessionStorage.getItem('currentUser');
     if (user) {
         var userObj = JSON.parse(user);
-        var details = '';
-        for (var key in userObj) {
-            details += '<p><b>' + key.charAt(0).toUpperCase() + key.slice(1) + ':</b> ' + userObj[key] + '</p>';
-        }
+        var name = userObj.name ? userObj.name : '';
+        var details = '<h3 style="color:#2c3e50;">Hello, ' + name + '!</h3>';
+        details += '<p style="font-size:18px;color:#2c3e50;">Thank you for logging in.</p>';
         document.getElementById('user-info').innerHTML = details;
     } else {
         document.getElementById('user-info').innerHTML = '<p>No user details found. Please login.</p>';
