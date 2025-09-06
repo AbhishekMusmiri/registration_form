@@ -20,15 +20,16 @@
         document.getElementById('login-redirect-btn').addEventListener('click', function() {
             window.location.href = 'login.html';
         });
-        var user = JSON.parse(localStorage.getItem('users'));
-        if (user && user.length > 0) {
-            var lastUser = user[user.length-1];
-            var details = '';
-            for (var key in lastUser) {
-                details += '<p><b>' + key.charAt(0).toUpperCase() + key.slice(1) + ':</b> ' + lastUser[key] + '</p>';
-            }
-            document.getElementById('user-details').innerHTML = details;
-        }
+        // var user = JSON.parse(localStorage.getItem('users'));
+        // if (user && user.length > 0) {
+        //     var lastUser = user[user.length-1];
+        //     var details = '';
+        //     for (var key in lastUser) {
+        //         details += '<p><b>' + key.charAt(0).toUpperCase() + key.slice(1) + ':</b> ' + lastUser[key] + '</p>';
+        //     }
+        //     document.getElementById('user-details').innerHTML = details;
+        // }
     </script>
 </body>
+
 </html>
