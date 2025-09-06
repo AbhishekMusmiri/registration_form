@@ -124,8 +124,9 @@
                 </div>
             </div>
 
-            <div style="width:100%;display:flex;justify-content:center;">
-                <button type="submit" id="save-btn" class="btn-primary">Save</button>
+            <div style="width:100%;display:flex;justify-content:center;gap:20px;">
+                <button type="submit" id="save-btn" class="btn-primary">Register</button>
+                <button type="button" id="login-btn" class="btn-secondary">Login</button>
             </div>
         </form>
     </div>
@@ -133,6 +134,9 @@
     <script type="module" src="./validation.js"></script>
     <script type="module" src="./storage.js"></script>
     <script>
+    document.getElementById('login-btn').onclick = function() {
+        window.location.href = 'login.html';
+    };
     document.getElementById('toggle-password').onclick = function() {
         var pwd = document.getElementById('password');
         pwd.type = pwd.type === 'password' ? 'text' : 'password';
@@ -172,6 +176,4 @@
         });
     </script>
 </body>
-
 </html>
-
