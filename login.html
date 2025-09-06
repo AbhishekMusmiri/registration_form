@@ -48,8 +48,8 @@
     };
     </script>
     <script type="module">
-        import { validateLoginForm } from 'validation.js';
-        import { authenticateUser } from 'auth.js';
+        import { validateLoginForm } from './validation.js';
+        import { authenticateUser } from './auth.js';
         
         document.getElementById('login-form').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -74,3 +74,4 @@
 </body>
 
 </html>
+
