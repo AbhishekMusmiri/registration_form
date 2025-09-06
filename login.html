@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-icon">
+            <svg width="70" height="70" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="8" r="4" fill="#3498db"/>
+                <ellipse cx="12" cy="17" rx="7" ry="5" fill="#2980b9"/>
+            </svg>
+        </div>
+        <h1>Login</h1>
+        <form id="login-form">
+            <div class="form-section" style="display:flex;flex-direction:column;align-items:center;">
+                <div class="form-group">
+                    <label for="login-email" class="required">E-mail</label>
+                    <input type="email" id="login-email" name="login-email">
+                    <div class="error" id="login-email-error"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="login-password" class="required">Password</label>
+                        <div style="position:relative;">
+                            <input type="password" id="login-password" name="login-password" style="padding-right:40px;">
+                            <span id="toggle-login-password" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:18px;">👁️</span>
+                        </div>
+                        <div class="error" id="login-password-error"></div>
+                </div>
+                
+                <div class="error" id="login-error"></div>
+                
+                <div style="width:100%;display:flex;justify-content:center;">
+                    <button type="submit" class="btn-primary">Login</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+    document.getElementById('toggle-login-password').onclick = function() {
+        var pwd = document.getElementById('login-password');
+        pwd.type = pwd.type === 'password' ? 'text' : 'password';
+    };
+    </script>
+    <script type="module">
+        import { validateLoginForm } from './scripts/validation.js';
+        import { authenticateUser } from './scripts/auth.js';
+        
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (validateLoginForm()) {
+                const email = document.getElementById('login-email').value.trim();
+                const password = document.getElementById('login-password').value;
+                
+                const user = authenticateUser(email, password);
+                
+                if (user) {
+                    // Store user session
+                    sessionStorage.setItem('currentUser', JSON.stringify(user));
+                    window.location.href = 'home.html';
+                } else {
+                    document.getElementById('login-error').textContent = 'Incorrect email or password';
+                    document.getElementById('login-error').style.display = 'block';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

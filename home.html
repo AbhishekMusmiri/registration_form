@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-icon">
+            <svg width="70" height="70" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="8" r="4" fill="#3498db"/>
+                <ellipse cx="12" cy="17" rx="7" ry="5" fill="#2980b9"/>
+            </svg>
+        </div>
+        <div class="home-screen">
+            <h2>Welcome!</h2>
+            <div id="user-info" class="user-info" style="color:#111;"></div>
+            <button id="logout-btn" class="btn-secondary">Logout</button>
+        </div>
+    </div>
+    <script>
+    var user = sessionStorage.getItem('currentUser');
+    if (user) {
+        var userObj = JSON.parse(user);
+        var details = '';
+        for (var key in userObj) {
+            details += '<p><b>' + key.charAt(0).toUpperCase() + key.slice(1) + ':</b> ' + userObj[key] + '</p>';
+        }
+        document.getElementById('user-info').innerHTML = details;
+    } else {
+        document.getElementById('user-info').innerHTML = '<p>No user details found. Please login.</p>';
+    }
+    document.getElementById('logout-btn').onclick = function() {
+        sessionStorage.removeItem('currentUser');
+        window.location.href = 'login.html';
+    };
+    </script>
+</body>
+</html>

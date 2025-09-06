@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-icon">
+            <svg width="70" height="70" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="8" r="4" fill="#3498db"/>
+                <ellipse cx="12" cy="17" rx="7" ry="5" fill="#2980b9"/>
+            </svg>
+        </div>
+        <header>
+            <h1>REGISTRATION FORM</h1>
+            <p class="intro-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+        </header>
+
+        <form id="registration-form">
+            <div class="form-section">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name" class="required">Name</label>
+                        <input type="text" id="name" name="name">
+                        <div class="error" id="name-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob" class="required">Date of Birth</label>
+                        <input type="date" id="dob" name="dob">
+                        <div class="error" id="dob-error"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                            <label for="address1">Address 1</label>
+                        <input type="text" id="address1" name="address1">
+                        <div class="error" id="address1-error"></div>
+                    </div>
+                    <div class="form-group">
+                            <label for="address2">Address 2</label>
+                        <input type="text" id="address2" name="address2">
+                        <div class="error" id="address2-error"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                            <label for="city">City</label>
+                        <input type="text" id="city" name="city">
+                        <div class="error" id="city-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="required">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                        <div class="error" id="phone-error"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>CONTACT DETAILS</h2>
+            <div class="form-section">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email" class="required">E-mail</label>
+                        <input type="email" id="email" name="email">
+                        <div class="error" id="email-error"></div>
+                    </div>
+                    <div class="form-group">
+                            <label for="business">Business Name</label>
+                        <input type="text" id="business" name="business">
+                        <div class="error" id="business-error"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                            <label for="father">Father's Name</label>
+                        <input type="text" id="father" name="father">
+                        <div class="error" id="father-error"></div>
+                    </div>
+                    <div class="form-group">
+                            <label for="mother">Mother's Name</label>
+                        <input type="text" id="mother" name="mother">
+                        <div class="error" id="mother-error"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                            <label for="other1">Other 1</label>
+                        <input type="text" id="other1" name="other1">
+                        <div class="error" id="other1-error"></div>
+                    </div>
+                    <div class="form-group">
+                            <label for="other2">Other 2</label>
+                        <input type="text" id="other2" name="other2">
+                         <div class="error" id="other2-error"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="password" class="required">Password</label>
+                            <div style="position:relative;">
+                                <input type="password" id="password" name="password" style="padding-right:40px;">
+                                <span id="toggle-password" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:18px;">👁️</span>
+                            </div>
+                            <div class="error" id="password-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password" class="required">Confirm Password</label>
+                            <div style="position:relative;">
+                                <input type="password" id="confirm-password" name="confirm-password" style="padding-right:40px;">
+                                <span id="toggle-confirm-password" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:18px;">👁️</span>
+                            </div>
+                            <div class="error" id="confirm-password-error"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="width:100%;display:flex;justify-content:center;">
+                <button type="submit" id="save-btn" class="btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <script type="module" src="scripts/validation.js"></script>
+    <script type="module" src="scripts/storage.js"></script>
+    <script>
+    document.getElementById('toggle-password').onclick = function() {
+        var pwd = document.getElementById('password');
+        pwd.type = pwd.type === 'password' ? 'text' : 'password';
+    };
+    document.getElementById('toggle-confirm-password').onclick = function() {
+        var pwd = document.getElementById('confirm-password');
+        pwd.type = pwd.type === 'password' ? 'text' : 'password';
+    };
+    </script>
+    <script type="module">
+        import { validateRegistrationForm } from './scripts/validation.js';
+        import { saveUserData } from './scripts/storage.js';
+        
+        document.getElementById('registration-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (validateRegistrationForm()) {
+                const userData = {
+                    name: document.getElementById('name').value.trim(),
+                    dob: document.getElementById('dob').value,
+                    address1: document.getElementById('address1').value.trim(),
+                    address2: document.getElementById('address2').value.trim(),
+                    city: document.getElementById('city').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    business: document.getElementById('business').value.trim(),
+                    father: document.getElementById('father').value.trim(),
+                    mother: document.getElementById('mother').value.trim(),
+                    other1: document.getElementById('other1').value.trim(),
+                    other2: document.getElementById('other2').value.trim(),
+                    password: document.getElementById('password').value
+                };
+                
+                saveUserData(userData);
+                window.location.href = 'thankyou.html';
+            }
+        });
+    </script>
+</body>
+</html>
